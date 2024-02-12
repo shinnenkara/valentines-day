@@ -3,10 +3,12 @@ import {ValentinesGame} from './ValentinesGame.tsx';
 import {ThemeMode, useAppContext} from '../state/AppContext.tsx';
 import {useNavigate} from "react-router-dom";
 import {modeBackgrounds, modeButtonBackgrounds, modeColor, modeTextColor} from "../theme/styles.ts";
+import DarkModeIcon from "../assets/icons/dark_mode_icon.svg";
+import LightModeIcon from "../assets/icons/light_mode_icon.svg";
 
 const styleIcons: Record<ThemeMode, string> = {
-    [ThemeMode.LIGHT]: 'src/assets/icons/dark_mode_icon.svg',
-    [ThemeMode.DARK]: 'src/assets/icons/light_mode_icon.svg',
+    [ThemeMode.LIGHT]: DarkModeIcon,
+    [ThemeMode.DARK]: LightModeIcon,
 }
 
 export const ValentinesPage: FC = () => {

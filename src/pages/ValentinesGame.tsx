@@ -2,6 +2,9 @@ import {FC, JSX, useMemo, useState} from "react";
 import {Modal} from "react-responsive-modal";
 import {useAppContext} from "../state/AppContext.tsx";
 import {borderColor, modeBackgrounds, modeButtonBackgrounds, modeTextColor} from "../theme/styles.ts";
+import ChocolateIcon from "../assets/icons/chocolate.png";
+import GitHubIcon from "../assets/icons/github-mark.svg";
+import LoveIcon from "../assets/icons/love.png";
 
 const profileLink = 'https://www.linkedin.com/in/oleksii-kharchenko-715430165/';
 const projectLink = 'https://github.com/shinnenkara/valentines-day';
@@ -39,7 +42,7 @@ const mainText: Record<RelationState, string | JSX.Element> = {
     [RelationState.LOVE]: 'Will you be my Valentine?',
     [RelationState.KISS]: <div className={'flex flex-wrap'} >
         <span className={'mr-2'}>{'Yippee!'}</span>
-        <img className={'w-10'} src="src/assets/icons/love.png" alt={'Love icon'} />
+        <img className={'w-10'} src={LoveIcon} alt={'Love icon'} />
     </div>,
 };
 
@@ -135,7 +138,7 @@ export const ValentinesGame: FC = () => {
                     <span className={'text-white font-bold'}>{'Send a message'}</span>
                 </a>
                 <a className={'bg-blue-600 py-2 px-4 rounded hover:bg-blue-700 flex flex-wrap'} href={projectLink}>
-                    <img className={'mr-2 w-6'} src="src/assets/icons/github-mark.svg" alt={'GitHub Icon'} />
+                    <img className={'mr-2 w-6'} src={GitHubIcon} alt={'GitHub Icon'} />
                     <span className={'text-white font-bold'}>{'Project link'}</span>
                 </a>
             </div>
@@ -154,7 +157,7 @@ export const ValentinesGame: FC = () => {
             }} open={modalIsOpen} onClose={modalHandler} showCloseIcon={false} center>
                 <div className={'flex flex-col items-center justify-center gap-4'}>
                     <div className={'flex flex-wrap items-center justify-center gap-4'}>
-                        <img className={'w-8'} src="src/assets/icons/chocolate.png" alt="Cookie Icon"/>
+                        <img className={'w-8'} src={ChocolateIcon} alt="Cookie Icon"/>
                         <span className={'font-bold'}>{'Chocolate Usage Agreement'}</span>
                     </div>
                     <p className={'indent-4'}>{'By using our website, you consent to the use of chocolate for enhancing your experience. ' +
