@@ -149,7 +149,7 @@ export const ValentinesGame: FC = () => {
         <>
             <div className={'flex flex-col items-center justify-center gap-4 h-screen'}>
                 {gifs[pageState]}
-                <span className={'text-3xl'}>{mainText[pageState]}</span>
+                <span className={'text-3xl text-center'}>{mainText[pageState]}</span>
                 {buttons[pageState]}
             </div>
             <Modal classNames={{
@@ -160,7 +160,7 @@ export const ValentinesGame: FC = () => {
                         <img className={'w-8'} src={ChocolateIcon} alt="Cookie Icon"/>
                         <span className={'font-bold'}>{'Chocolate Usage Agreement'}</span>
                     </div>
-                    <p className={'indent-4'}>{'By using our website, you consent to the use of chocolate for enhancing your experience. ' +
+                    <p className={'indent-4 text-justify'}>{'By using our website, you consent to the use of chocolate for enhancing your experience. ' +
                         'We may use various types of chocolate for improving functionality and analyzing it consumption on website traffic. ' +
                         'You can manage your chocolate preferences, but disabling chocolate from your diet may affect your overall experience. ' +
                         'We take measures to ensure chocolate security, but we cannot guarantee against unauthorized access into your fridge. ' +
