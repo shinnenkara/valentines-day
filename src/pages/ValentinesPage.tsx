@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, useEffect} from 'react';
 import {ValentinesGame} from './ValentinesGame.tsx';
 import {ThemeMode, useAppContext} from '../state/AppContext.tsx';
 import {useNavigate} from "react-router-dom";
@@ -26,8 +26,12 @@ export const ValentinesPage: FC = () => {
         setThemeMode(ThemeMode.LIGHT);
     }
 
+    useEffect(() => {
+        document.body.className = `${modeBackgrounds[themeMode]}`;
+    }, [themeMode]);
+
     return (
-        <div className={`${modeTextColor[themeMode]} ${modeBackgrounds[themeMode]}`}>
+        <div className={`${modeTextColor[themeMode]}`}>
             <button className={`rounded-full absolute m-4 p-2 ${modeButtonBackgrounds[themeMode]}`} onClick={themeModeHandler}>
                 <img className={`fill-${modeColor[themeMode]}`} src={styleIcons[themeMode]} alt={'Page light or dark mode button'}/>
             </button>
