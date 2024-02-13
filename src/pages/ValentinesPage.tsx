@@ -2,7 +2,7 @@ import {FC, useEffect} from 'react';
 import {ValentinesGame} from './ValentinesGame.tsx';
 import {ThemeMode, useAppContext} from '../state/AppContext.tsx';
 import {useNavigate} from "react-router-dom";
-import {modeBackgrounds, modeButtonBackgrounds, modeColor, modeTextColor} from "../theme/styles.ts";
+import {modeBackgroundColor, modeButtonBackgrounds, modeColor, modeTextColor} from "../theme/styles.ts";
 import DarkModeIcon from "../assets/icons/dark_mode_icon.svg";
 import LightModeIcon from "../assets/icons/light_mode_icon.svg";
 
@@ -27,7 +27,7 @@ export const ValentinesPage: FC = () => {
     }
 
     useEffect(() => {
-        document.body.className = `${modeBackgrounds[themeMode]}`;
+        document.body.style.backgroundColor = `${modeBackgroundColor[themeMode]}`;
     }, [themeMode]);
 
     return (

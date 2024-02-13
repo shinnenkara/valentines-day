@@ -11,9 +11,14 @@ export const modeTextColor: Record<ThemeMode, string> = {
 }
 
 export const modeBackgrounds: Record<ThemeMode, string> = {
-    [ThemeMode.LIGHT]: '',
-    [ThemeMode.DARK]: 'dark:bg-slate-800',
+    [ThemeMode.LIGHT]: 'bg-white',
+    [ThemeMode.DARK]: 'bg-slate-800',
 }
+
+export const modeBackgroundColor: Record<ThemeMode, string> = {
+    [ThemeMode.LIGHT]: 'rgb(255 255 255)',
+    [ThemeMode.DARK]: 'rgb(30 41 59)',
+};
 
 export const modeColor: Record<ThemeMode, string> = {
     [ThemeMode.LIGHT]: 'black',
