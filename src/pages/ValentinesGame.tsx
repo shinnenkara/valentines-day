@@ -7,6 +7,7 @@ import GitHubIcon from "../assets/icons/github-mark.svg";
 import LoveIcon from "../assets/icons/love.png";
 
 const profileLink = 'https://www.linkedin.com/in/oleksii-kharchenko-715430165/';
+const contactLink = 'https://t.me/shinnenkara';
 const projectLink = 'https://github.com/shinnenkara/valentines-day';
 
 enum RelationState {
@@ -134,7 +135,7 @@ export const ValentinesGame: FC = () => {
         ),
         [RelationState.KISS]: (
             <div className={'flex flex-wrap items-center justify-center gap-4'}>
-                <a className={'bg-pink-600 py-2 px-4 rounded hover:bg-pink-700'} href={profileLink}>
+                <a className={'bg-pink-600 py-2 px-4 rounded hover:bg-pink-700'} href={contactLink}>
                     <span className={'text-white font-bold'}>{'Send a message'}</span>
                 </a>
                 <a className={'bg-blue-600 py-2 px-4 rounded hover:bg-blue-700 flex flex-wrap'} href={projectLink}>

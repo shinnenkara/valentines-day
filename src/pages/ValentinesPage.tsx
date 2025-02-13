@@ -11,9 +11,37 @@ const styleIcons: Record<ThemeMode, string> = {
     [ThemeMode.DARK]: LightModeIcon,
 }
 
+const setInitialTheme = (setTheme: (theme: ThemeMode) => void) => {
+    if (!window.matchMedia) {
+        console.log("No theme support");
+        return;
+    }
+
+    const matchDarkTheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const params = new URLSearchParams(window.location.search);
+    const queryStyleMode = params.get('theme');
+
+    if (!queryStyleMode && matchDarkTheme.matches) {
+        setTheme(ThemeMode.DARK);
+    }
+
+    matchDarkTheme.addEventListener('change', event => {
+        if (event.matches) {
+            setTheme(ThemeMode.DARK);
+            return;
+        }
+
+        setTheme(ThemeMode.LIGHT);
+    });
+}
+
 export const ValentinesPage: FC = () => {
     const { themeMode, setThemeMode } = useAppContext();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setInitialTheme(setThemeMode)
+    }, [setThemeMode])
 
     const themeModeHandler = () => {
         if (themeMode === ThemeMode.LIGHT) {
