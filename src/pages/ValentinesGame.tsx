@@ -1,10 +1,9 @@
 import {FC, JSX, useMemo, useState} from "react";
-import {Modal} from "react-responsive-modal";
-import {useAppContext} from "../state/AppContext.tsx";
-import {borderColor, modeBackgrounds, modeButtonBackgrounds, modeTextColor} from "../theme/styles.ts";
+import {Dialog, DialogContent} from "../components/ui/dialog";
 import ChocolateIcon from "../assets/icons/chocolate.png";
 import GitHubIcon from "../assets/icons/github-mark.svg";
 import LoveIcon from "../assets/icons/love.png";
+import {toast} from "sonner";
 
 const profileLink = 'https://www.linkedin.com/in/oleksii-kharchenko-715430165/';
 const contactLink = 'https://t.me/shinnenkara';
@@ -60,10 +59,23 @@ const phrases: string[] = [
     "Just kidding, pookie, pleeeeese",
 ];
 
+const logs: string[] = [
+    "why, pookie...",
+    "my heart is breaking",
+    "but... but... I got you chocolates...",
+    "you're making the sigma sad",
+    "reconsider? pretty please?",
+    "I even learned to code for this...",
+    "the sigma is crying now...",
+    "okay but what if I asked nicely?",
+    "you're breaking my heart, pookie...",
+    "I'll give you all my chocolates...",
+];
+
+
 const DEFAULT_YES_SIZE = 16;
 
 export const ValentinesGame: FC = () => {
-    const {themeMode} = useAppContext();
     const [pageState, setPageState] = useState<RelationState>(
         RelationState.HELLO
     );
@@ -71,6 +83,7 @@ export const ValentinesGame: FC = () => {
 
     const [noCounter, setNoCounter] = useState(0);
     const [yesSize, setYesSize] = useState(DEFAULT_YES_SIZE);
+    const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });
 
     const hiHandler = () => {
         setIsOpen(true);
@@ -78,12 +91,17 @@ export const ValentinesGame: FC = () => {
     }
 
     const yesHandler = () => {
+        toast.dismiss();
         setPageState(RelationState.KISS);
     };
 
     const noHandler = () => {
-        console.log('why, pookie...');
+        toast(logs[noCounter]);
         setYesSize(yesSize + DEFAULT_YES_SIZE)
+
+        const randomX = Math.random() * 200 - 100;
+        const randomY = Math.random() * 200 - 100;
+        setNoButtonPosition({ x: randomX, y: randomY });
 
         if (noCounter === phrases.length - 1) {
             setNoCounter(0);
@@ -94,10 +112,14 @@ export const ValentinesGame: FC = () => {
     };
 
     const modalHandler = () => {
-        console.log('Please accept, beg you..')
+        toast(logs[noCounter]);
+
+        setNoCounter(noCounter + 1);
     };
 
     const agreeHandler = () => {
+        toast.dismiss();
+        setNoCounter(0);
         setIsOpen(false);
         setPageState(RelationState.TALK);
     };
@@ -128,7 +150,13 @@ export const ValentinesGame: FC = () => {
                             fontSize: yesSize,
                         }}>{'Yes'}</span>
                 </button>
-                <button className={'bg-red-600 py-2 px-4 rounded'} onClick={noHandler}>
+                <button 
+                    className={'bg-red-600 py-2 px-4 rounded transition-transform duration-300'} 
+                    onClick={noHandler}
+                    style={{
+                        transform: `translate(${noButtonPosition.x}px, ${noButtonPosition.y}px)`
+                    }}
+                >
                     <span className={'text-white font-bold'}>{phrases[noCounter]}</span>
                 </button>
             </div>
@@ -153,28 +181,28 @@ export const ValentinesGame: FC = () => {
                 <span className={'text-3xl text-center'}>{mainText[pageState]}</span>
                 {buttons[pageState]}
             </div>
-            <Modal classNames={{
-                modal: `${modeBackgrounds[themeMode]} ${modeTextColor[themeMode]} rounded`
-            }} open={modalIsOpen} onClose={modalHandler} showCloseIcon={false} center>
-                <div className={'flex flex-col items-center justify-center gap-4'}>
-                    <div className={'flex flex-wrap items-center justify-center gap-4'}>
-                        <img className={'w-8'} src={ChocolateIcon} alt="Cookie Icon"/>
-                        <span className={'font-bold'}>{'Chocolate Usage Agreement'}</span>
+            <Dialog open={modalIsOpen} onOpenChange={(open) => !open && modalHandler()}>
+                <DialogContent showCloseButton={false} className="sm:max-w-2xl">
+                    <div className={'flex flex-col items-center justify-center gap-4'}>
+                        <div className={'flex flex-wrap items-center justify-center gap-4'}>
+                            <img className={'w-8'} src={ChocolateIcon} alt="Cookie Icon"/>
+                            <span className={'font-bold'}>{'Chocolate Usage Agreement'}</span>
+                        </div>
+                        <p className={'indent-4 text-justify'}>{'By using our website, you consent to the use of chocolate for enhancing your experience. ' +
+                            'We may use various types of chocolate for improving functionality and analyzing it consumption on website traffic. ' +
+                            'You can manage your chocolate preferences, but disabling chocolate from your diet may affect your overall experience. ' +
+                            'We take measures to ensure chocolate security, but we cannot guarantee against unauthorized access into your fridge. ' +
+                            'By continuing to use the website, you agree to this Chocolate Usage Agreement and required to provide homemade chocolate to the '}
+                        <a className={'text-blue-600'} href={profileLink}>{'creator'}</a>{' of this website.'}</p>
+                        <button
+                            className="p-2 rounded border-foreground border-2 hover:bg-muted"
+                            onClick={agreeHandler}
+                        >
+                            {'I agree'}
+                        </button>
                     </div>
-                    <p className={'indent-4 text-justify'}>{'By using our website, you consent to the use of chocolate for enhancing your experience. ' +
-                        'We may use various types of chocolate for improving functionality and analyzing it consumption on website traffic. ' +
-                        'You can manage your chocolate preferences, but disabling chocolate from your diet may affect your overall experience. ' +
-                        'We take measures to ensure chocolate security, but we cannot guarantee against unauthorized access into your fridge. ' +
-                        'By continuing to use the website, you agree to this Chocolate Usage Agreement and required to provide homemade chocolate to the '}
-                    <a className={'text-blue-600'} href={profileLink}>{'creator'}</a>{' of this website.'}</p>
-                    <button
-                        className={`p-2 rounded ${borderColor[themeMode]} border-2 ${modeButtonBackgrounds[themeMode]}`}
-                        onClick={agreeHandler}
-                    >
-                        {'I agree'}
-                    </button>
-                </div>
-            </Modal>
+                </DialogContent>
+            </Dialog>
         </>
     )
 };

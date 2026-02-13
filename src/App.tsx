@@ -1,9 +1,10 @@
 import './App.css';
 import 'react-responsive-modal/styles.css';
 import {FC} from 'react';
-import {AppProvider} from "./state/AppContext.tsx";
+import {ThemeProvider} from "./components/theme-provider.tsx";
 import {ValentinesPage} from "./pages/ValentinesPage.tsx";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {Toaster} from "./components/ui/sonner.tsx";
 
 const router = createBrowserRouter([
     {
@@ -14,8 +15,9 @@ const router = createBrowserRouter([
 
 export const App: FC = () => {
     return (
-        <AppProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark">
             <RouterProvider router={router} />
-        </AppProvider>
+            <Toaster />
+        </ThemeProvider>
     );
 };
