@@ -1,0 +1,55 @@
+{
+  "states": {
+    "hello": {
+      "text": "Hi!",
+      "action": "Hello"
+    },
+    "agreement": {
+      "text": "Please accept...",
+      "action": "I agree"
+    },
+    "talk": {
+      "text": "There is a serious question ahead.",
+      "action": "Ok"
+    },
+    "love": {
+      "text": "Will you be my Valentine?",
+      "actionYes": "Yes"
+    },
+    "kiss": {
+      "text": "Yippee!",
+      "actionMessage": "Send a message",
+      "actionProject": "Project link"
+    }
+  },
+  "phrases": [
+    "No",
+    "Are you sure?",
+    "Really sure??",
+    "Would you reconsider???",
+    "Please?..",
+    "Pookie please...",
+    "I'll be very sad",
+    "I'll be very very very sad",
+    "Ok, I'll stop",
+    "Just kidding, pookie, pleeeeese"
+  ],
+  "toasts": [
+    "why, pookie...",
+    "my heart is breaking",
+    "but... but... I got you chocolates...",
+    "you're making the sigma sad",
+    "reconsider? pretty please?",
+    "I even learned to code for this...",
+    "the sigma is crying now...",
+    "okay but what if I asked nicely?",
+    "you're breaking my heart, pookie...",
+    "I'll give you all my chocolates..."
+  ],
+  "modal": {
+    "title": "Chocolate Usage Agreement",
+    "text": "By using our website, you consent to the use of chocolate for enhancing your experience. We may use various types of chocolate for improving functionality and analyzing it consumption on website traffic. You can manage your chocolate preferences, but disabling chocolate from your diet may affect your overall experience. We take measures to ensure chocolate security, but we cannot guarantee against unauthorized access into your fridge. By continuing to use the website, you agree to this Chocolate Usage Agreement and required to provide homemade chocolate to the ",
+    "creator": "creator",
+    "ofThisWebsite": " of this website."
+  }
+}
