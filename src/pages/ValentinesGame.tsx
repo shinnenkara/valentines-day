@@ -5,36 +5,12 @@ import ChocolateIcon from "../assets/icons/chocolate.png";
 import GitHubIcon from "../assets/icons/github-mark.svg";
 import LoveIcon from "../assets/icons/love.png";
 import {toast} from "sonner";
+import {GifDisplay, RelationState} from "../components/GifDisplay";
+import {useLoveType} from "../hooks/useLoveType";
 
 const profileLink = 'https://www.linkedin.com/in/oleksii-kharchenko-715430165/';
 const contactLink = 'https://t.me/shinnenkara';
 const projectLink = 'https://github.com/shinnenkara/valentines-day';
-
-enum RelationState {
-    HELLO,
-    AGREEMENT,
-    TALK,
-    LOVE,
-    KISS,
-}
-
-const gifs: Record<RelationState, JSX.Element> = {
-    [RelationState.HELLO]: (
-        <iframe src="https://giphy.com/embed/CsJW11ZqQKFEiGobgX" className={'size-60'} />
-    ),
-    [RelationState.AGREEMENT]: (
-        <iframe src="https://giphy.com/embed/lRE0vhEO63vD8EDg1L" className={'size-60'} />
-    ),
-    [RelationState.TALK]: (
-        <iframe src="https://giphy.com/embed/OqB5Oz1tNp6Q6Ld7tk" className={'size-60'}/>
-    ),
-    [RelationState.LOVE]: (
-        <iframe src="https://giphy.com/embed/byLGLI5h3jwRaqd2qU" className={'size-60'}/>
-    ),
-    [RelationState.KISS]: (
-        <iframe src="https://giphy.com/embed/lU1sNR33A1EhkK7ol7" className={'size-60'} />
-    ),
-};
 
 const DEFAULT_YES_SIZE = 16;
 
@@ -44,6 +20,7 @@ export const ValentinesGame: FC = () => {
     const [pageState, setPageState] = useState<RelationState>(
         RelationState.HELLO
     );
+    const loveType = useLoveType();
     const [modalIsOpen, setIsOpen] = useState(false);
 
     const [noCounter, setNoCounter] = useState(0);
@@ -160,7 +137,7 @@ export const ValentinesGame: FC = () => {
     return (
         <>
             <div className={'flex flex-col items-center justify-center gap-4 h-screen'}>
-                {gifs[pageState]}
+                <GifDisplay relationState={pageState} loveType={loveType} />
                 <span className={'text-3xl text-center'}>{mainText[pageState]}</span>
                 {buttons[pageState]}
             </div>
