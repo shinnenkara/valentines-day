@@ -2,6 +2,16 @@
 
 An interactive Valentine's Day web experience built with React, TypeScript, and modern web technologies. This project features a playful, gamified way to ask someone to be your Valentine with support for multiple relationship types and languages.
 
+## 🌐 Live Demo
+
+**[https://valentines-day-shinnenkara.vercel.app](https://valentines-day-shinnenkara.vercel.app)**
+
+Try different modes:
+- 👨 M: [https://valentines-day-shinnenkara.vercel.app/?love=m](https://valentines-day-shinnenkara.vercel.app/?love=m)
+- 👩 W: [https://valentines-day-shinnenkara.vercel.app/?love=w](https://valentines-day-shinnenkara.vercel.app/?love=w)
+- 👩‍❤️‍👩 WLW: [https://valentines-day-shinnenkara.vercel.app/?love=wlw](https://valentines-day-shinnenkara.vercel.app/?love=wlw)
+- 👨‍❤️‍👨 MLM: [https://valentines-day-shinnenkara.vercel.app/?love=mlm](https://valentines-day-shinnenkara.vercel.app/?love=mlm)
+
 ## ✨ Features
 
 - 🎮 **Interactive Game Flow**: Multi-stage interaction with animated GIFs
