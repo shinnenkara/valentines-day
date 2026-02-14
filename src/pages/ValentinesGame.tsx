@@ -7,10 +7,9 @@ import LoveIcon from "../assets/icons/love.png";
 import {toast} from "sonner";
 import {GifDisplay, RelationState} from "../components/GifDisplay";
 import {useLoveType} from "../hooks/useLoveType";
+import {config} from "../config";
 
-const profileLink = 'https://www.linkedin.com/in/oleksii-kharchenko-715430165/';
-const contactLink = 'https://t.me/shinnenkara';
-const projectLink = 'https://github.com/shinnenkara/valentines-day';
+const {profileLink, contactLink, projectLink} = config;
 
 const DEFAULT_YES_SIZE = 16;
 
